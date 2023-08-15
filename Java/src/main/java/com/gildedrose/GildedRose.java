@@ -9,15 +9,15 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            int degradQualityBy = 1;
+            int subtractQualityWith = 1;
             if (!items[i].name.equals("Aged Brie")
                     && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 if (items[i].quality > 0) {
                     if (!items[i].name.equals("Sulfuras, Hand of Ragnaros") &&
                             !items[i].name.equals("Conjured Mana Cake")) {
-                        items[i].quality = items[i].quality - degradQualityBy;
+                        items[i].quality = items[i].quality - subtractQualityWith;
                     } else if (items[i].name.equals("Conjured Mana Cake")) {
-                        items[i].quality = determineConjuredItemQuality(items[i], degradQualityBy);
+                        items[i].quality = determineConjuredItemQuality(items[i], subtractQualityWith);
                     }
                 }
             } else {
@@ -41,7 +41,7 @@ class GildedRose {
             }
 
             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-                items[i].sellIn = items[i].sellIn - degradQualityBy;
+                items[i].sellIn = items[i].sellIn - subtractQualityWith;
             }
 
             if (items[i].sellIn < 0) {
@@ -50,9 +50,9 @@ class GildedRose {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros") &&
                                 !items[i].name.equals("Conjured Mana Cake")) {
-                                items[i].quality = items[i].quality - degradQualityBy;
+                                items[i].quality = items[i].quality - subtractQualityWith;
                             } else if (items[i].name.equals("Conjured Mana Cake")) {
-                                items[i].quality = determineConjuredItemQuality(items[i], degradQualityBy);
+                                items[i].quality = determineConjuredItemQuality(items[i], subtractQualityWith);
                             }
                         }
                     } else {
@@ -70,14 +70,14 @@ class GildedRose {
     /**
      * This methods determines the Quality of a Conjured Item
      * @param aInItem an Item
-     * @param aInDegradeQualityBy degrade quality by this Integer
+     * @param aInSubtractQualityWith degrade quality by this Integer
      * @return Quality of the item as an Integer
      */
-    private int determineConjuredItemQuality(Item aInItem, int aInDegradeQualityBy) {
+    private int determineConjuredItemQuality(Item aInItem, int aInSubtractQualityWith) {
         int result = aInItem.quality;
 
         if (aInItem.quality > 1) {
-            result = aInItem.quality - aInDegradeQualityBy * 2;
+            result = aInItem.quality - aInSubtractQualityWith * 2;
         } else {
             result = 0;
         }
