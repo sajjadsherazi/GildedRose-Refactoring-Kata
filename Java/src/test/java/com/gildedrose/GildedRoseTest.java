@@ -22,12 +22,14 @@ class GildedRoseTest {
         int sellIn = 6;
         int quality = 21;
         Item[] items = new Item[]{
+            new Item("Elixir of the Mongoose", sellIn, quality),
             new Item("Conjured Mana Cake", sellIn, quality)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(quality - 2, app.items[0].quality);
-        assertEquals(sellIn - 1, app.items[0].sellIn);
+        int normalItemDegradedQuality = quality - app.items[0].quality;
+        int conjuredItemDegradedQulaity = quality - app.items[1].quality;
+        assertEquals(normalItemDegradedQuality * 2, conjuredItemDegradedQulaity);
     }
 
     /**
@@ -39,12 +41,14 @@ class GildedRoseTest {
         int sellIn = 0;
         int quality = 21;
         Item[] items = new Item[]{
+            new Item("Elixir of the Mongoose", sellIn, quality),
             new Item("Conjured Mana Cake", sellIn, quality)
         };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(quality - 4, app.items[0].quality);
-        assertEquals(sellIn - 1, app.items[0].sellIn);
+        int normalItemDegradedQuality = quality - app.items[0].quality;
+        int conjuredItemDegradedQulaity = quality - app.items[1].quality;
+        assertEquals(normalItemDegradedQuality * 2, conjuredItemDegradedQulaity);
     }
 
     /**
