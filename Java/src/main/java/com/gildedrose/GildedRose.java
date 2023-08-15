@@ -16,11 +16,7 @@ class GildedRose {
                             !items[i].name.equals("Conjured Mana Cake")) {
                         items[i].quality = items[i].quality - 1;
                     } else if (items[i].name.equals("Conjured Mana Cake")) {
-                        if (items[i].quality > 1) {
-                            items[i].quality = items[i].quality - 2;
-                        } else {
-                            items[i].quality = 0;
-                        }
+                        items[i].quality = determineConjuredItemQuality(items[i]);
                     }
                 }
             } else {
@@ -55,11 +51,7 @@ class GildedRose {
                                 !items[i].name.equals("Conjured Mana Cake")) {
                                 items[i].quality = items[i].quality - 1;
                             } else if (items[i].name.equals("Conjured Mana Cake")) {
-                                if (items[i].quality > 1) {
-                                    items[i].quality = items[i].quality - 2;
-                                } else {
-                                    items[i].quality = 0;
-                                }
+                                items[i].quality = determineConjuredItemQuality(items[i]);
                             }
                         }
                     } else {
@@ -72,5 +64,22 @@ class GildedRose {
                 }
             }
         }
+    }
+
+    /**
+     * This methods determines the Quality of a Conjured Item
+     * @param aInItem an Item
+     * @return Integer Quality of the item
+     */
+    private int determineConjuredItemQuality(Item aInItem) {
+        int result = aInItem.quality;
+
+        if (aInItem.quality > 1) {
+            result = aInItem.quality - 2;
+        } else {
+            result = 0;
+        }
+
+        return result;
     }
 }

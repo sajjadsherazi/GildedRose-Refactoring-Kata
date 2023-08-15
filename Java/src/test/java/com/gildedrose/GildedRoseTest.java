@@ -53,7 +53,7 @@ class GildedRoseTest {
     @Test
     void conjuredItemQualityCannotBeNegative() {
         int sellIn = 6;
-        int quality = 1;
+        int quality = 0;
         Item[] items = new Item[]{
             new Item("Conjured Mana Cake", sellIn, quality)
         };
